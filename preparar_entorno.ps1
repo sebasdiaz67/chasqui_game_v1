@@ -31,13 +31,22 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$ProjectPath = $PSScriptRoot,
+    [string]$ProjectPath,
     [switch]$InstallAndroidStudio,
     [switch]$InitCapacitor,
     [string]$AppId = 'com.sebastian.chasqui'
 )
 
 $ErrorActionPreference = 'Stop'
+
+# En Windows PowerShell 5.1, $PSScriptRoot llega vacío si se usa como valor por defecto de un parámetro
+# (ejecución con -File). Se resuelve aquí: carpeta del script; si no, la carpeta actual.
+if (-not $ProjectPath) {
+    if ($PSScriptRoot) { $ProjectPath = $PSScriptRoot }
+    elseif ($MyInvocation.MyCommand.Path) { $ProjectPath = Split-Path -Parent $MyInvocation.MyCommand.Path }
+    else { $ProjectPath = (Get-Location).Path }
+}
+
 $MinNode = 22
 $MinJava = 21
 $Results = [ordered]@{}
