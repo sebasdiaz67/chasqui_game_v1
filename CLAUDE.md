@@ -44,3 +44,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\preparar_entorno.ps1 [-Ins
 - Orientación solo vertical. Debe funcionar offline.
 - Evitar contenido que eleve la clasificación de edad (ADR-003: sin hoja de coca).
 - Rendimiento objetivo: 60 fps en Android gama media; `dt` limitado a 50 ms.
+
+## Repositorio
+- Git propio en esta carpeta (rama `main`, etiqueta `v1.0.0`); es lo único que se sube a GitHub (privado; licencia propietaria en `LICENSE`).
+- Guía de subida en `README.md` → «Subir el código a GitHub». Commits en español: `tipo: descripción`.

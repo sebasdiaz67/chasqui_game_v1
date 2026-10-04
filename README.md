@@ -117,7 +117,7 @@ En `android/app/src/main/AndroidManifest.xml`, en la `<activity>` principal: `an
 
 ## Subir el código a GitHub
 
-El repositorio git está en la **raíz** `D:\claude-projects` (rama `main`, etiqueta `v1.0.0`) e incluye la estructura SDD, `chasqui` y el prototipo archivado `dodge-game`.
+Este proyecto es un **repositorio git propio** en `D:\claude-projects\chasqui` (rama `main`, etiqueta `v1.0.0`). Solo contiene el juego: la estructura SDD de la carpeta superior no se sube.
 
 ### Qué se necesita
 1. **Cuenta de GitHub.**
@@ -134,7 +134,7 @@ El repositorio git está en la **raíz** `D:\claude-projects` (rama `main`, etiq
 
 ### Primera subida (PowerShell)
 ```powershell
-cd D:\claude-projects
+cd D:\claude-projects\chasqui
 git status                      # debe decir "nothing to commit, working tree clean"
 git remote add origin https://github.com/<tu-usuario>/<tu-repo>.git
 git push -u origin main
@@ -142,7 +142,7 @@ git push origin --tags          # sube la etiqueta v1.0.0
 ```
 Con la CLI de GitHub, crear el repo privado y subir en un paso:
 ```powershell
-cd D:\claude-projects
+cd D:\claude-projects\chasqui
 gh repo create <tu-repo> --private --source . --remote origin --push
 git push origin --tags
 ```
@@ -150,16 +150,16 @@ git push origin --tags
 ### Si git muestra "detected dubious ownership"
 El repositorio se creó desde el entorno de Claude (Linux) sobre tu disco; Windows puede considerarlo de otro dueño. Se autoriza una sola vez:
 ```powershell
-git config --global --add safe.directory D:/claude-projects
+git config --global --add safe.directory D:/claude-projects/chasqui
 ```
 
 ### Antes de cada subida
-- Pruebas en verde: `node chasqui/tests/smoke.mjs`.
+- Pruebas en verde: `node tests/smoke.mjs`.
 - Ninguna llave de firma versionada: `git ls-files | Select-String -Pattern 'jks|keystore'` no debe devolver nada.
 - Siguientes subidas: `git push` (y `git push origin --tags` cuando haya una versión nueva).
 
 ### Qué queda fuera del repositorio (`.gitignore`)
-Llaves de firma (`*.jks`, `*.keystore`), APK/AAB, carpetas de build de Android, `node_modules/`, `_sdd/.build/` y `Claude outputs/`.
+Llaves de firma (`*.jks`, `*.keystore`), APK/AAB, carpetas de build de Android y `node_modules/`.
 **Respalda la llave de firma aparte**: si se pierde, no se pueden publicar actualizaciones de la app en Google Play.
 
 ## Autoría
