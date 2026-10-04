@@ -115,6 +115,53 @@ En `android/app/src/main/AndroidManifest.xml`, en la `<activity>` principal: `an
 - Ícono, splash, capturas y política de privacidad para Google Play.
 - Revisar los datos históricos con fuentes antes de publicar.
 
+## Subir el código a GitHub
+
+El repositorio git está en la **raíz** `D:\claude-projects` (rama `main`, etiqueta `v1.0.0`) e incluye la estructura SDD, `chasqui` y el prototipo archivado `dodge-game`.
+
+### Qué se necesita
+1. **Cuenta de GitHub.**
+2. **Git para Windows** (incluye *Git Credential Manager*, que gestiona el inicio de sesión):
+   ```powershell
+   winget install --id Git.Git --exact
+   git --version
+   ```
+3. **Un repositorio PRIVADO y VACÍO** en <https://github.com/new>: sin README, sin `.gitignore` y sin licencia (ya existen localmente; si GitHub los crea, el primer push choca).
+   Debe ser **privado** porque la licencia del juego es propietaria (`LICENSE`).
+4. **Autenticación**: en el primer `git push` se abre el navegador para iniciar sesión (Git Credential Manager).
+   Alternativa con la CLI de GitHub: `winget install --id GitHub.cli --exact` y luego `gh auth login`.
+   Nunca pegues tokens ni contraseñas en el código, en commits ni en chats.
+
+### Primera subida (PowerShell)
+```powershell
+cd D:\claude-projects
+git status                      # debe decir "nothing to commit, working tree clean"
+git remote add origin https://github.com/<tu-usuario>/<tu-repo>.git
+git push -u origin main
+git push origin --tags          # sube la etiqueta v1.0.0
+```
+Con la CLI de GitHub, crear el repo privado y subir en un paso:
+```powershell
+cd D:\claude-projects
+gh repo create <tu-repo> --private --source . --remote origin --push
+git push origin --tags
+```
+
+### Si git muestra "detected dubious ownership"
+El repositorio se creó desde el entorno de Claude (Linux) sobre tu disco; Windows puede considerarlo de otro dueño. Se autoriza una sola vez:
+```powershell
+git config --global --add safe.directory D:/claude-projects
+```
+
+### Antes de cada subida
+- Pruebas en verde: `node chasqui/tests/smoke.mjs`.
+- Ninguna llave de firma versionada: `git ls-files | Select-String -Pattern 'jks|keystore'` no debe devolver nada.
+- Siguientes subidas: `git push` (y `git push origin --tags` cuando haya una versión nueva).
+
+### Qué queda fuera del repositorio (`.gitignore`)
+Llaves de firma (`*.jks`, `*.keystore`), APK/AAB, carpetas de build de Android, `node_modules/`, `_sdd/.build/` y `Claude outputs/`.
+**Respalda la llave de firma aparte**: si se pierde, no se pueden publicar actualizaciones de la app en Google Play.
+
 ## Autoría
 **Chasqui: El Mensajero Inca** · versión 1.0.0  
 Byron Sebastián Rosero Díaz — Ingeniero de software  
