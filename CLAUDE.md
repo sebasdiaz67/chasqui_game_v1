@@ -16,6 +16,8 @@
 npx serve www                           # ejecutar en local (o: python -m http.server -d www 8080)
 node --check www/js/*.js                # chequeo de sintaxis rápido
 node tests/smoke.mjs                    # prueba headless (requiere playwright; ver cabecera del archivo)
+# Windows (usuario): preparar entorno Android / Capacitor 8
+powershell -NoProfile -ExecutionPolicy Bypass -File .\preparar_entorno.ps1 [-InstallAndroidStudio] [-InitCapacitor]
 ```
 
 ## Arquitectura (`www/js/`, orden de carga importa)

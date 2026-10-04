@@ -89,8 +89,16 @@ Se usan scripts clásicos (no módulos ES) para que `index.html` funcione con do
 
 **Agregar un nivel:** una entrada nueva en `CH.LEVELS` de `config.js` (región, misión, distancia, velocidad, peligros, textos y 2 datos históricos). Solo hay que tocar `game.js` si el nivel trae un tipo de misión nuevo.
 
-## Empaquetar para Android (Capacitor)
-Requisitos: Node 18+, Android Studio, JDK 17.
+## Empaquetar para Android (Capacitor 8)
+Requisitos (verificados 2026-10): **Node 22+**, **Android Studio 2025.2.1+** y **JDK 21** (Android Studio trae el suyo en `jbr`).
+
+**Preparar el entorno en Windows** (diagnostica, instala lo que falte con winget y ejecuta `npx cap doctor`):
+```
+powershell -NoProfile -ExecutionPolicy Bypass -File D:\claude-projects\chasqui\preparar_entorno.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File D:\claude-projects\chasqui\preparar_entorno.ps1 -InstallAndroidStudio -InitCapacitor
+```
+
+Pasos manuales equivalentes:
 ```
 npm init -y
 npm i @capacitor/core @capacitor/cli @capacitor/android

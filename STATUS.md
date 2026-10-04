@@ -7,7 +7,7 @@
 | Spec | Estado | Notas |
 |---|---|---|
 | [001-gameplay-base](specs/001-gameplay-base/spec.md) | Implementada (retro-documentada) | Verificada en Chromium headless con viewport móvil |
-| [002-empaquetado-android](specs/002-empaquetado-android/spec.md) | Borrador | Requiere Android Studio + JDK 17 en Windows (lo ejecuta el usuario) |
+| [002-empaquetado-android](specs/002-empaquetado-android/spec.md) | Borrador | Script `preparar_entorno.ps1` listo; falta ejecutarlo en Windows |
 | [003-arte-final](specs/003-arte-final/spec.md) | Borrador (plantilla vacía) | Definir estilo y origen del arte |
 | [004-campania-niveles](specs/004-campania-niveles/spec.md) | Implementada (iteración 2) | 5 niveles por suyos; balance sin validar |
 | [005-musica-y-ui-movil](specs/005-musica-y-ui-movil/spec.md) | Implementada | Música procedural, nombre comercial, área segura, vidas compactas |
@@ -35,6 +35,7 @@
 - Niveles de 1000–1500 m (~45–60 s): duración no validada con jugadores.
 
 ## Bitácora de sesiones
+- 2026-10-04 — `preparar_entorno.ps1` (diagnóstico Node/JDK/Android Studio/SDK, winget, `npx cap doctor`). Requisitos corregidos a Capacitor 8: Node 22+, JDK 21, Android Studio 2025.2.1+. Sintaxis validada con PowerShell 7 (Linux); no ejecutado en Windows.
 - 2026-10-04 — LICENSE propietaria (ley Ecuador / Código Ingenios). Repositorio git inicializado en la raíz; commit inicial v1.0.0.
 - 2026-10-04 — v1.0.0: firma de autoría (cabecera © en JS/CSS, meta author/copyright, `CH.META`, créditos en el menú). Smoke 39/39.
 - 2026-10-04 — Spec 005: nombre «Chasqui: El Mensajero Inca», música andina procedural, contraste de jaguar/puma/serpientes, área segura con env(), vidas ❤ ×N. Smoke 38/38.

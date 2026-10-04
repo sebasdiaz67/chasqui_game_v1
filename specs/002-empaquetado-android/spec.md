@@ -21,10 +21,14 @@ Generar un AAB instalable, vertical, offline, con ícono y splash propios.
 ### R5 — Firma
 - AAB firmado con keystore propio, respaldado fuera del repositorio.
 
+## Requisitos de entorno (verificados 2026-10-04)
+- Capacitor 8: Node 22+, Android Studio 2025.2.1+, JDK 21 (incluido en Android Studio). Reemplaza la suposición inicial de Node 18 / JDK 17.
+- Script `preparar_entorno.ps1`: diagnóstico + instalación con winget + `npx cap doctor`.
+
 ## Fuera de alcance
 - Publicación en la tienda, monetización, servicios de Google Play Games.
 
 ## Supuestos y preguntas abiertas
 > ❓ Pendiente: versión mínima de Android y target API vigente exigida por Play (cambia cada año).
-> ❓ Pendiente: ¿el usuario tiene Android Studio + JDK 17 instalados?
+> ❓ Pendiente: ejecutar `preparar_entorno.ps1` en la máquina del usuario y revisar la salida de `npx cap doctor`.
 > ⚠️ Supuesto: la compilación y firma las ejecuta el usuario en Windows.
