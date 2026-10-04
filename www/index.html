@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#1a120b">
+  <meta name="author" content="Byron Sebastián Rosero Díaz">
+  <meta name="copyright" content="© 2026 Byron Sebastián Rosero Díaz. Todos los derechos reservados.">
+  <meta name="version" content="1.0.0">
+  <title>Chasqui: El Mensajero Inca</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="stage">
+    <div id="frame">
+      <canvas id="game" aria-label="Área de juego"></canvas>
+
+      <div id="hud-buttons" class="hidden">
+        <button id="btn-pause" class="round" aria-label="Pausa">II</button>
+        <button id="btn-pututu" aria-label="Usar pututu">
+          <span class="shell">🐚</span><span id="pututu-count" class="badge">0</span>
+        </button>
+      </div>
+
+      <section id="screen-menu" class="overlay">
+        <h1>CHASQUI</h1>
+        <p class="subtitle">El Mensajero Inca</p>
+        <div class="stats-row">
+          <span>Récord <b id="m-best">0</b></span>
+          <span>Quipus <b id="m-quipus">0</b></span>
+          <span>Nivel máx. <b id="m-max">—</b></span>
+        </div>
+        <button id="btn-campaign" class="primary">Campaña</button>
+        <button id="btn-endless">Camino infinito</button>
+        <p id="m-endless-note" class="hint"></p>
+        <button id="btn-chars">Chasqui: <b id="m-char">Amaru</b></button>
+        <button id="btn-sound" class="small">Sonido: SÍ</button>
+        <p class="hint">Desliza para moverte · 🐚 despeja el camino</p>
+        <p id="m-credits" class="credits">v1.0.0 | Desarrollado por Byron Sebastián Rosero Díaz</p>
+      </section>
+
+      <section id="screen-levels" class="overlay hidden">
+        <h2>Campaña</h2>
+        <p class="hint">De pueblo en pueblo, hasta el Inca</p>
+        <div id="level-list"></div>
+        <button id="btn-levels-back">Volver</button>
+      </section>
+
+      <section id="screen-mission" class="overlay hidden">
+        <p id="mi-num" class="eyebrow"></p>
+        <h2 id="mi-title"></h2>
+        <p id="mi-route" class="route"></p>
+        <div class="request">
+          <p id="mi-giver" class="giver"></p>
+          <p id="mi-request"></p>
+        </div>
+        <p class="goal"><span>Misión</span> <b id="mi-goal"></b></p>
+        <p id="mi-fact" class="fact"></p>
+        <button id="btn-mission-go" class="primary">¡En marcha!</button>
+        <button id="btn-mission-back" class="small">Volver</button>
+      </section>
+
+      <section id="screen-win" class="overlay hidden">
+        <h2 id="w-title"></h2>
+        <div class="request inca">
+          <p class="giver">El Inca te dice:</p>
+          <p id="w-inca"></p>
+        </div>
+        <p id="w-text"></p>
+        <dl id="w-stats" class="summary"></dl>
+        <p id="w-fact" class="fact"></p>
+        <p id="w-note" class="highlight hidden"></p>
+        <button id="btn-next" class="primary">Siguiente nivel</button>
+        <button id="btn-win-menu">Niveles</button>
+      </section>
+
+      <section id="screen-chars" class="overlay hidden">
+        <h2>Elige tu chasqui</h2>
+        <p class="hint">Quipus acumulados: <b id="c-quipus">0</b></p>
+        <div id="char-list"></div>
+        <button id="btn-chars-back" class="primary">Listo</button>
+      </section>
+
+      <section id="screen-pause" class="overlay hidden">
+        <h2>Pausa</h2>
+        <button id="btn-resume" class="primary">Continuar</button>
+        <button id="btn-restart">Reiniciar</button>
+        <button id="btn-quit">Menú</button>
+      </section>
+
+      <section id="screen-over" class="overlay hidden">
+        <h2 id="o-title">El mensaje se detuvo</h2>
+        <p id="o-reason"></p>
+        <dl class="summary">
+          <div><dt>Distancia</dt><dd id="o-dist">0 m</dd></div>
+          <div><dt>Quipus</dt><dd id="o-quipus">0</dd></div>
+          <div><dt id="o-stage-label">Tramo</dt><dd id="o-tramo">1</dd></div>
+          <div id="o-row-score"><dt>Puntaje</dt><dd id="o-score">0</dd></div>
+          <div id="o-row-best"><dt>Récord</dt><dd id="o-best">0</dd></div>
+          <div id="o-row-max" hidden><dt>Nivel máximo</dt><dd id="o-max">1</dd></div>
+        </dl>
+        <p id="o-record" class="highlight hidden">¡Nuevo récord!</p>
+        <p id="o-unlock" class="highlight hidden"></p>
+        <button id="btn-retry" class="primary">Correr de nuevo</button>
+        <button id="btn-menu">Menú</button>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/draw.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+/*!
+ * Chasqui: El Mensajero Inca
+ * Archivo: css/style.css
+ * Autor: Byron Sebastián Rosero Díaz — Ingeniero de software
+ * Versión: 1.0.0
+ * © 2026 Byron Sebastián Rosero Díaz. Todos los derechos reservados.
+ */
+:root {
+  --bg: #1a120b;
+  --fg: #fbf3e4;
+  --gold: #f5d76e;
+  --ochre: #d4a72c;
+  --red: #c0392b;
+  --panel: rgba(26, 18, 11, 0.86);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+/* Área segura (spec 005-R4): el juego se dibuja dentro de los insets del notch y barras del sistema. */
+#stage {
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* El frame tiene el tamaño exacto del canvas escalado; HUD y pantallas se posicionan dentro. */
+#frame { position: relative; overflow: hidden; }
+canvas#game { display: block; width: 100%; height: 100%; touch-action: none; }
+
+/* ---------- Botones del HUD ---------- */
+#hud-buttons { position: absolute; inset: 0; pointer-events: none; }
+#hud-buttons button { pointer-events: auto; }
+.round {
+  position: absolute; top: 8px; right: 8px;
+  width: 40px; height: 40px; min-width: 0; min-height: 0;
+  border-radius: 50%; font-size: 14px; font-weight: 700;
+  background: rgba(0, 0, 0, 0.3);
+}
+#btn-pututu {
+  position: absolute; right: 14px; bottom: 18px;
+  width: 64px; height: 64px; min-width: 0; min-height: 0;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: rgba(26, 18, 11, 0.7);
+  font-size: 30px; line-height: 1;
+  touch-action: none;
+}
+#btn-pututu.empty { opacity: 0.35; border-color: var(--fg); }
+#btn-pututu .badge {
+  position: absolute; top: -6px; right: -6px;
+  min-width: 24px; height: 24px; border-radius: 12px;
+  background: var(--red); color: #fff;
+  font-size: 13px; font-weight: 700; line-height: 24px;
+}
+
+/* ---------- Pantallas ---------- */
+.overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px; padding: 20px;
+  background: var(--panel);
+  text-align: center;
+}
+#screen-menu { background: linear-gradient(180deg, rgba(26,18,11,0.92) 0%, rgba(26,18,11,0.55) 60%, rgba(26,18,11,0.2) 100%); justify-content: flex-start; padding-top: 70px; }
+.overlay h1 {
+  font-size: 50px; letter-spacing: 6px; color: var(--gold);
+  text-shadow: 0 3px 0 #7a4b12, 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+.overlay h2 { font-size: 26px; color: var(--gold); }
+.subtitle { font-style: italic; opacity: 0.9; margin-top: -6px; margin-bottom: 8px; }
+.stats-row { display: flex; gap: 18px; font-size: 14px; margin-bottom: 6px; }
+.stats-row b { color: var(--gold); }
+.hint { font-size: 12px; opacity: 0.8; }
+.highlight { color: var(--gold); font-weight: 700; }
+
+.summary {
+  display: grid; grid-template-columns: auto auto; gap: 6px 18px;
+  font-size: 15px; margin: 6px 0;
+}
+.summary > div { display: contents; }
+.summary > div[hidden] { display: none; }
+.summary dt { text-align: right; opacity: 0.75; }
+.summary dd { text-align: left; font-weight: 700; }
+
+/* ---------- Campaña ---------- */
+button.locked { opacity: 0.45; }
+#level-list { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.level-card {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; min-height: 0; padding: 10px 12px;
+  border-radius: 12px; border: 2px solid rgba(251, 243, 228, 0.25);
+  background: rgba(0, 0, 0, 0.3); text-align: left; font-size: 15px;
+}
+.level-card.done { border-color: rgba(125, 255, 154, 0.5); }
+.level-card.locked, .level-card.soon { opacity: 0.5; }
+.level-num {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--ochre); color: #2b1a08; font-weight: 800;
+}
+.level-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.level-info strong { color: var(--gold); }
+.level-info small { font-size: 12px; opacity: 0.8; }
+.level-state { font-size: 12px; font-weight: 700; white-space: nowrap; }
+.eyebrow { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+.route { font-weight: 600; }
+.request {
+  width: 100%; padding: 12px 14px; border-radius: 12px;
+  background: rgba(251, 243, 228, 0.1); border-left: 4px solid var(--ochre); text-align: left;
+}
+.request.inca { border-left-color: var(--gold); background: rgba(245, 215, 110, 0.12); }
+.request .giver { font-size: 12px; opacity: 0.75; margin-bottom: 4px; }
+.request p:last-child { font-style: italic; line-height: 1.4; }
+.goal span { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.75; margin-right: 6px; }
+.goal b { color: var(--gold); }
+.fact { font-size: 13px; font-style: italic; opacity: 0.85; max-width: 300px; line-height: 1.4; }
+#w-text, #o-reason { max-width: 300px; line-height: 1.4; }
+
+button {
+  min-width: 190px; min-height: 46px;
+  font-size: 17px; font-family: inherit;
+  border-radius: 23px;
+  border: 2px solid var(--fg);
+  background: transparent; color: var(--fg);
+  cursor: pointer;
+}
+button.primary {
+  background: var(--ochre); border-color: var(--ochre); color: #2b1a08; font-weight: 700;
+  box-shadow: 0 4px 0 #8a6a12;
+}
+button.small { min-height: 36px; font-size: 14px; min-width: 140px; }
+button:active { transform: translateY(2px); }
+
+/* ---------- Selección de personajes ---------- */
+#char-list {
+  display: flex; flex-direction: column; gap: 8px;
+  width: 100%; max-height: 70%; overflow-y: auto;
+}
+.char-card {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; min-height: 0; padding: 6px 10px;
+  border-radius: 12px; border: 2px solid rgba(251, 243, 228, 0.25);
+  background: rgba(0, 0, 0, 0.25); text-align: left;
+}
+.char-card canvas { width: 60px; height: 70px; flex-shrink: 0; }
+.char-card.selected { border-color: var(--gold); background: rgba(212, 167, 44, 0.18); }
+.char-card.locked { opacity: 0.7; }
+.char-info { display: flex; flex-direction: column; gap: 1px; }
+.char-info strong { font-size: 16px; color: var(--gold); }
+.char-info em { font-size: 12px; opacity: 0.85; }
+.char-info span { font-size: 12px; }
+.char-info small { font-size: 11px; opacity: 0.75; }
+.char-info .lock { color: #ff9f8f; font-weight: 600; }
+
+/* Créditos del menú: discretos, sin competir con los botones */
+.credits {
+  position: absolute; left: 0; right: 0; bottom: 14px;
+  font-size: 11px; letter-spacing: 0.02em;
+  color: rgba(251, 243, 228, 0.72);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+
+.hidden { display: none !important; }
