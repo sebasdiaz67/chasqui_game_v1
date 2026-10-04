@@ -35,6 +35,7 @@
 - Niveles de 1000–1500 m (~45–60 s): duración no validada con jugadores.
 
 ## Bitácora de sesiones
+- 2026-10-04 — Diagnóstico en Windows del usuario: Node v25 (OK, no LTS), JDK 21 vía SDKMAN (OK), Android Studio y SDK: FALTAN, Capacitor no instalado. Pendiente: AppId definitivo.
 - 2026-10-04 — `preparar_entorno.ps1` (diagnóstico Node/JDK/Android Studio/SDK, winget, `npx cap doctor`). Requisitos corregidos a Capacitor 8: Node 22+, JDK 21, Android Studio 2025.2.1+. Sintaxis validada con PowerShell 7 (Linux); no ejecutado en Windows.
 - 2026-10-04 — LICENSE propietaria (ley Ecuador / Código Ingenios). Repositorio git inicializado en la raíz; commit inicial v1.0.0.
 - 2026-10-04 — v1.0.0: firma de autoría (cabecera © en JS/CSS, meta author/copyright, `CH.META`, créditos en el menú). Smoke 39/39.
